@@ -10,7 +10,7 @@ const server = http.createServer((req, res) => {
 const wss = new WebSocket.Server({ server });
 
 const COLS = 30, ROWS = 22, TICK = 150;
-const TARGET_FOOD = 14;
+const TARGET_FOOD = 22;
 const RESPAWN_DELAY = 18;
 
 const WORDS = [
@@ -45,7 +45,7 @@ const WORDS = [
   {t:'PLOT TWIST',y:'chaos',c:'#EF9F27',p:20,e:'Plot twist! Chaos ensues!',i:'💫',ms:5,mv:'erratic'},
 ];
 
-const COLORS = ['#1D9E75','#7F77DD','#D85A30','#EF9F27','#E24B4A','#378ADD','#639922','#BA7517','#D4537E','#5DCAA5','#AFA9EC','#F0997B'];
+const COLORS = ['#0F6E56','#534AB7','#993C1D','#BA7517','#A32D2D','#185FA5','#3B6D11','#8B3A8B','#C2185B','#00695C','#1565C0','#6A1B9A'];
 
 let players = {};
 let foods = [];
@@ -83,7 +83,7 @@ function processRespawnQueue() {
 
 function fillBoard() {
   const total = foods.length + respawnQueue.length;
-  const target = Math.min(TARGET_FOOD, 6 + Object.keys(players).length * 2);
+  const target = Math.min(TARGET_FOOD, 10 + Object.keys(players).length * 3);
   while (foods.length + respawnQueue.length < target) {
     spawnFood(WORDS[rn(WORDS.length)], 0);
   }
